@@ -32,6 +32,10 @@ public class Recipe {
     @Column(name = "instructions")
     private String instructions;
 
+    public Recipe(){
+
+    }
+
     public Recipe( String name, String ingredients, String instructions){
 //        this.UUID = UUID;
         this.name = name;
