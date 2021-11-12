@@ -5,22 +5,15 @@ import com.abn.recipes.dto.RecipeDto;
 import com.abn.recipes.model.Ingredient;
 import com.abn.recipes.model.Recipe;
 import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.List;
 import java.util.stream.Collectors;
 
 public class Util {
     public static String formatDate(final LocalDateTime created) {
-        String formattedDate;
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd - MM - yyyy HH:mm");
 
-        final int day = created.getDayOfMonth();
-        final int month = created.getMonthValue();
-        final int year = created.getYear();
-        final int hour = created.getHour();
-        final int minute = created.getMinute();
-
-        formattedDate = day +"-"+ month +"-"+ year +" "+ hour+":"+minute;
-
-        return formattedDate;
+        return formatter.format(created);
     }
 
     public static Recipe modelMapper(final RecipeDto recipeDto) {
