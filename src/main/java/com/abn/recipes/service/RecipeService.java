@@ -1,30 +1,46 @@
 package com.abn.recipes.service;
 
+import com.abn.recipes.dto.RecipeDto;
+import com.abn.recipes.exception.RecipeNotFoundException;
 import com.abn.recipes.model.Recipe;
 import com.abn.recipes.repository.RecipesRepository;
-import java.time.LocalDateTime;
+import com.abn.recipes.utils.Util;
 import java.util.List;
+import java.util.Optional;
+import org.springframework.security.core.userdetails.UsernameNotFoundException;
+import org.springframework.stereotype.Service;
 
+@Service
 public class RecipeService {
-    RecipesRepository recipesRepository;
+    private final RecipesRepository recipesRepository;
 
-    public RecipeService(    RecipesRepository recipesRepository){
+    public RecipeService(RecipesRepository recipesRepository) {
         this.recipesRepository = recipesRepository;
 
     }
 
-    public static String convertDateFormat(final LocalDateTime created) {
-        String formattedDate;
-        final int day = created.getDayOfMonth();
-        final int month = created.getMonthValue();
-        final int year = created.getYear();
-        final int hour = created.getHour();
-        final int minute = created.getMinute();
-        formattedDate = day +"-"+ month +"-"+ year +" "+ hour+":"+minute;
-        return formattedDate;
+    public List<RecipeDto> getReceipts() {
+        final List<Recipe> all = recipesRepository.findAll();
+
+        return Util.entityToDto(all);
+
     }
 
-    public List<Recipe> getReceipts(){
-        return recipesRepository.findAll();
+    public RecipeDto persistData(final RecipeDto recipeDto1) {
+        Recipe recipe = Util.modelMapper(recipeDto1);
+
+        final Recipe save = recipesRepository.save(recipe);
+
+        return Util.convertRecipeDto(save);
+    }
+
+    public RecipeDto getRecipe(Integer id)  {
+        final Optional<Recipe> recipe = recipesRepository.findById(id);
+            return Util.convertRecipeDto(recipe.get());
+
+    }
+    public Recipe update(final Recipe recipe){
+        Recipe save = recipesRepository.save(recipe);
+        return save;
     }
 }

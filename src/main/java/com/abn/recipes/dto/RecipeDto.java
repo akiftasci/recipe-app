@@ -14,6 +14,7 @@ public class RecipeDto {
     private String date;
     private boolean vegetarian;
     private int portion;
+    private String instructions;
     private List<IngredientDto> ingredients;
 
 
