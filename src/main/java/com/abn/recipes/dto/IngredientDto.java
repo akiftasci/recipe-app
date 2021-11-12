@@ -7,6 +7,6 @@ import lombok.Setter;
 @Getter
 public class IngredientDto {
     private String name;
-    private double amount;
+    private String amount;
 
 }

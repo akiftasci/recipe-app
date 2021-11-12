@@ -25,7 +25,7 @@ public class Ingredient {
     private String name;
 
     @Column(name = "amount")
-    private double amount;
+    private String amount;
 
     @ManyToOne()
     @JoinColumn(name = "recipe_id")
