@@ -5,7 +5,6 @@ import java.util.List;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -40,7 +39,7 @@ public class Recipe {
     @Column(name = "instructions", length = 1000)
     private String instructions;
 
-    @OneToMany(mappedBy = "recipe", cascade= CascadeType.ALL)
+    @OneToMany(mappedBy = "recipe", cascade= CascadeType.ALL, orphanRemoval = true)
     private List<Ingredient> ingredients;
 
     public  Recipe(){

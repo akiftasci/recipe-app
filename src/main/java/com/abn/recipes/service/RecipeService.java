@@ -1,13 +1,11 @@
 package com.abn.recipes.service;
 
 import com.abn.recipes.dto.RecipeDto;
-import com.abn.recipes.exception.RecipeNotFoundException;
 import com.abn.recipes.model.Recipe;
 import com.abn.recipes.repository.RecipesRepository;
 import com.abn.recipes.utils.Util;
 import java.util.List;
 import java.util.Optional;
-import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 
 @Service
@@ -40,7 +38,10 @@ public class RecipeService {
 
     }
     public Recipe update(final Recipe recipe){
-        Recipe save = recipesRepository.save(recipe);
-        return save;
+        return recipesRepository.save(recipe);
+    }
+
+    public void delete(final Recipe recipe){
+        recipesRepository.delete(recipe);
     }
 }
