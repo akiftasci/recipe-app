@@ -10,10 +10,17 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 public class Util {
-    public static String formatDate(final LocalDateTime created) {
+
+    public static String convertLocalDateTimeToString(final LocalDateTime created) {
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd - MM - yyyy HH:mm");
 
         return formatter.format(created);
+    }
+
+    public static LocalDateTime convertStringToLocalDateTime(final String created) {
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd - MM - yyyy HH:mm");
+
+        return LocalDateTime.parse(created, formatter);
     }
 
     public static Recipe modelMapper(final RecipeDto recipeDto) {
@@ -41,7 +48,7 @@ public class Util {
         RecipeDto recipeDto = new RecipeDto();
 
         recipeDto.setId(save.getId());
-        recipeDto.setDate(Util.formatDate(save.getCreated()));
+        recipeDto.setDate(Util.convertLocalDateTimeToString(save.getCreated()));
 
         return recipeDto;
     }
@@ -52,7 +59,7 @@ public class Util {
             final RecipeDto recipeDto = new RecipeDto();
 
             recipeDto.setId(n.getId());
-            recipeDto.setDate(Util.formatDate(n.getCreated()));
+            recipeDto.setDate(Util.convertLocalDateTimeToString(n.getCreated()));
             recipeDto.setName(n.getName());
             recipeDto.setVegetarian(n.isVegetarian());
             recipeDto.setPortion(n.getPortion());
