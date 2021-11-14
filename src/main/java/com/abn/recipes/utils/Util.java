@@ -80,4 +80,25 @@ public class Util {
     }
 
 
+    public static Recipe modelMapperUpdate(final RecipeDto recipeDto) {
+        Recipe recipe = new Recipe();
+        recipe.setId(recipeDto.getId());
+        recipe.setName(recipeDto.getName());
+        recipe.setCreated(convertStringToLocalDateTime(recipeDto.getDate()));
+        recipe.setPortion(recipeDto.getPortion());
+        recipe.setVegetarian(recipeDto.isVegetarian());
+        recipe.setInstructions(recipeDto.getInstructions());
+
+        recipe.setIngredients(recipeDto.getIngredients().stream().map(n -> {
+            final Ingredient ingredient = new Ingredient();
+
+            ingredient.setName(n.getName());
+            ingredient.setAmount(n.getAmount());
+            ingredient.setRecipe(recipe);
+
+            return ingredient;
+        }).collect(Collectors.toList()));
+
+        return recipe;
+    }
 }
