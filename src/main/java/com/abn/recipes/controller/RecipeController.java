@@ -42,6 +42,10 @@ public class RecipeController {
         this.jwtTokenUtil = jwtTokenUtil;
     }
 
+    @GetMapping(value = "/authentication")
+    public String getauto(){
+        return "on air";
+    }
 
     @PostMapping(value = "/authentication")
     public ResponseEntity<?> createAuthenticationToken(@RequestBody AuthenticationRequest authenticationRequest) throws Exception {
