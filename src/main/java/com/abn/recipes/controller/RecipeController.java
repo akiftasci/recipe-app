@@ -73,8 +73,8 @@ public class RecipeController {
     }
 
     @PutMapping(value = "/update")
-    public Recipe updateRecipe(@RequestBody Recipe recipe) {
-        return recipeService.update(recipe);
+    public RecipeDto updateRecipe(@RequestBody RecipeDto recipeDto) {
+        return recipeService.update(recipeDto);
     }
 
     @DeleteMapping(value = "/delete")

@@ -37,8 +37,12 @@ public class RecipeService {
             return Util.convertRecipeDto(recipe.get());
 
     }
-    public Recipe update(final Recipe recipe){
-        return recipesRepository.save(recipe);
+    public RecipeDto update(final RecipeDto recipeDto){
+        final Recipe recipe = Util.modelMapperUpdate(recipeDto);
+
+        final Recipe save = recipesRepository.save(recipe);
+
+        return    Util.convertRecipeDto(save);
     }
 
     public void delete(final Recipe recipe){
