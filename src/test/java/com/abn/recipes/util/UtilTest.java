@@ -15,11 +15,22 @@ public class UtilTest {
 
     @Test
     public void testFormatDate() {
-        final String formattedDate = Util.formatDate(LocalDateTime.of(2021, 11, 12, 19, 2));
+        final String formattedDate = Util.convertLocalDateTimeToString(LocalDateTime.of(2021, 11, 12, 19, 2));
 
         Assertions.assertThat(formattedDate.equals(desiredFormat));
     }
 
+    @Test
+    public void testFormatDateConversionFromStringToLocalDateTime(){
+        String date = "10 - 02 - 1996 08:30";
+        final LocalDateTime converted = Util.convertStringToLocalDateTime(date);
+        Assertions.assertThat(converted.getHour() == 8);
+        Assertions.assertThat(converted.getMinute() == 30);
+        Assertions.assertThat(converted.getYear() == 1996);
+        Assertions.assertThat(converted.getMonthValue() == 2);
+        Assertions.assertThat(converted.getDayOfMonth() == 10);
+
+    }
     @Test
     public void testConvertRecipeDto() {
         Recipe recipe = createTestRecipeFajita();
