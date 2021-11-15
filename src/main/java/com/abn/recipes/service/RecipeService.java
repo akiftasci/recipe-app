@@ -1,9 +1,7 @@
 package com.abn.recipes.service;
 
-import com.abn.recipes.dto.RecipeDto;
 import com.abn.recipes.model.Recipe;
 import com.abn.recipes.repository.RecipesRepository;
-import com.abn.recipes.utils.Util;
 import java.util.List;
 import java.util.Optional;
 import org.springframework.stereotype.Service;
@@ -17,35 +15,32 @@ public class RecipeService {
 
     }
 
-    public List<RecipeDto> getReceipts() {
-        final List<Recipe> all = recipesRepository.findAll();
-
-        return Util.entityToDto(all);
-
+    public List<Recipe> getRecipes() {
+        return recipesRepository.findAll();
     }
 
-    public RecipeDto persistData(final RecipeDto recipeDto1) {
-        Recipe recipe = Util.modelMapper(recipeDto1);
-
-        final Recipe save = recipesRepository.save(recipe);
-
-        return Util.convertRecipeDto(save);
+    public Recipe persistData(final Recipe recipe) {
+        return recipesRepository.save(recipe);
     }
 
-    public RecipeDto getRecipe(Integer id)  {
+    public Recipe getRecipe(Long id) {
         final Optional<Recipe> recipe = recipesRepository.findById(id);
-            return Util.convertRecipeDto(recipe.get());
-
-    }
-    public RecipeDto update(final RecipeDto recipeDto){
-        final Recipe recipe = Util.modelMapperUpdate(recipeDto);
-
-        final Recipe save = recipesRepository.save(recipe);
-
-        return    Util.convertRecipeDto(save);
+        if (recipe.isPresent()) {
+            return recipe.get();
+        }
+        throw new RuntimeException();
     }
 
-    public void delete(final Recipe recipe){
-        recipesRepository.delete(recipe);
+    public Recipe update(final Recipe recipe) {
+        return recipesRepository.save(recipe);
+    }
+
+    public Recipe delete(final Long id) {
+        final Optional<Recipe> recipe = recipesRepository.findById(id);
+        if (recipe.isPresent()) {
+            recipesRepository.deleteById(id);
+            return recipe.get();
+        }
+        throw new RuntimeException();
     }
 }

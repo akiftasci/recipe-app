@@ -1,2 +1,4 @@
-package com.abn.recipes.exception;public class RecipeNotFoundException {
+package com.abn.recipes.exception;
+
+public class RecipeNotFoundException extends RuntimeException{
 }

@@ -39,10 +39,10 @@ public class Recipe {
     @Column(name = "instructions", length = 1000)
     private String instructions;
 
-    @OneToMany(mappedBy = "recipe", cascade= CascadeType.ALL, orphanRemoval = true)
+    @OneToMany(mappedBy = "recipe", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<Ingredient> ingredients;
 
-    public  Recipe(){
+    public Recipe() {
 
     }
 }
