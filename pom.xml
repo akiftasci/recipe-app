@@ -54,7 +54,6 @@
 			<version>2.12.2</version>
 			<scope>provided</scope>
 		</dependency>
-
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-webflux</artifactId>
@@ -69,7 +68,6 @@
 			<artifactId>json</artifactId>
 			<version>20151123</version>
 		</dependency>
-
 		<dependency>
 			<groupId>org.mockito</groupId>
 			<artifactId>mockito-all</artifactId>
@@ -130,9 +128,7 @@
 			<version>3.18.1</version>
 			<scope>test</scope>
 		</dependency>
-
 	</dependencies>
-
 	<build>
 		<plugins>
 			<plugin>
@@ -149,5 +145,4 @@
 			</plugin>
 		</plugins>
 	</build>
-
 </project>
