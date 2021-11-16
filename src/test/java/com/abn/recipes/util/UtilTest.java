@@ -12,7 +12,6 @@ import org.assertj.core.api.Assertions;
 import org.junit.Before;
 import org.junit.Test;
 
-import static io.restassured.RestAssured.given;
 
 //todo:converter util class
 public class UtilTest {

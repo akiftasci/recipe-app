@@ -1,10 +1,10 @@
-#Feature: Login
-#
-#  Scenario: Login with credentials
-#    Given The user is on the main page
-#    When  the user puts username
-#    And   the user puts in the password
-#    Then  the user should be logged in
+Feature: Authentication
+
+  Scenario: Login with credentials
+    Given The user is on the authentication page
+    When  the user puts username
+    And   the user puts in the password
+    Then  the user should be able to generate token with credentials
 
 #  Scenario: Create new recipe
 #    Given The user is logged in
@@ -12,9 +12,9 @@
 #    Then  the recipe should be in the recipe list
 
 #  Scenario: Unauthorized user action
-#    Given The user is not logged in
-#    When  the user tries to create a new recipe
-#    Then  the recipe should be in the recipe list
+#    Given The user is not logged in and does not have token
+#    When  the user tries to get the list of recipes
+#    Then  the response should be '403' unauthorized
 
 #  Scenario: Update recipe with new name
 #    Given The user is logged in
