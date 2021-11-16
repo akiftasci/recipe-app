@@ -38,8 +38,7 @@ Please see the link below for the API documentation.
 
 ---
 
-## 
-Architechtural Choises
+## Architechtural Choises
 
 In my project I used layered architecture. The code is arranged, so the data enters the controller layer and
 works its way down each layer until it reaches the bottom, which is database. Along the way, each layer has
