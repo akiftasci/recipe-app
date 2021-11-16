@@ -35,7 +35,7 @@ run the image with `docker run -p 8080:8080 --name akifdev/recipe-app --link mys
 ## API Documentation
 Please see the link below for the API documentation.
 
-[You can find more information about the API.](https://documenter.getpostman.com/view/14143942/UVC9gkF4)
+[You can find more information about the API here.](https://documenter.getpostman.com/view/14143942/UVC9gkF4)
 
 ---
 
