@@ -28,7 +28,8 @@ Create a container for database with the following command
 
 Mysql database should be runing and you should be able to see it with `docker ps` command.
 
-Pull the recipe app with `docker pull akifdev/recipe-app` and run the image with `docker run recipe-app`
+Pull the recipe app with `docker pull akifdev/recipe-app:1.0.0` and 
+run the image with `docker run -p 8080:8080 --name akifdev/recipe-app --link mysqldb:mysql -d recipe-app`
 
 ---
 ## API Documentation
