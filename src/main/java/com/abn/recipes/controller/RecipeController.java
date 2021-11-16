@@ -45,7 +45,11 @@ public class RecipeController {
         this.userDetailsService = userDetailsService;
         this.jwtTokenUtil = jwtTokenUtil;
     }
-
+    /**
+     * Creates a token for the correct credentials.
+     * @param authenticationRequest credentials with username and password.
+     * @return returns Bearer token if the credentials are correct if not throws exception.
+     **/
     @PostMapping(value = "/authentication")
     public ResponseEntity<?> createAuthenticationToken(@RequestBody AuthenticationRequest authenticationRequest) throws Exception {
         try {
@@ -60,41 +64,60 @@ public class RecipeController {
 
         return ResponseEntity.ok(new AuthenticationResponse(jwt));
     }
-
+    /**
+     * Returns the recipes that are persisted in the database.
+     * @return list of recipes
+     **/
     @GetMapping()
     public List<RecipeDto> getRecipes() {
         final List<Recipe> recipes = recipeService.getRecipes();
 
         return Util.entityToDto(recipes);
     }
-
+    /**
+     * Returns the recipe with the specified parameter.
+     * @param id id for the recipe to be returned
+     * @return recipe with specified id
+     **/
     @GetMapping("/{id}")
     public List<RecipeDto> getRecipeById(@PathVariable Long id) {
         final Recipe recipes = recipeService.getRecipe(id);
 
         return Util.entityToDto(Collections.singletonList(recipes));
     }
-
+    /**
+     * Persists the data provided in the body.
+     * @param recipeDto recipe with variables that wants to be persisted.
+     * @return recipe that is persisted with the id and created date.
+     **/
     @PostMapping()
     public RecipeDto persistRecipe(@RequestBody final RecipeDto recipeDto) {
-        Recipe recipe = Util.modelMapper(recipeDto);
-        Recipe recipe2 = recipeService.persistData(recipe);
+        Recipe recipe = Util.convertToEntity(recipeDto);
+        Recipe persistedEntity = recipeService.persistData(recipe);
 
-        return Util.convertRecipeDto(recipe2);
+        return Util.convertToRecipeDto(persistedEntity);
     }
-
+    /**
+     * Updated the current recipe in the database.
+     * @param recipeDto recipe with variables that wants to be updated.
+     * @return recipe that is updated with the id and created date.
+     **/
     @PutMapping()
     public RecipeDto updateRecipe(@RequestBody RecipeDto recipeDto) {
-        final Recipe recipe = Util.modelMapperUpdate(recipeDto);
+        final Recipe recipe = Util.convertRecipeDtoToEntityToUpdate(recipeDto);
         final Recipe update = recipeService.update(recipe);
 
-        return Util.convertRecipeDto(update);
+        return Util.convertToRecipeDto(update);
     }
-
+    /**
+     * Deletes the specified recipe in the database.
+     * @param id recipe that wants to be deleted.
+     * @return recipe that is deleted with id.
+     **/
     @DeleteMapping(value = "/{id}")
     public RecipeDto deleteRecipe(@PathVariable Long id) {
         final Recipe delete = recipeService.delete(id);
 
-        return Util.convertRecipeDto(delete);
+        return Util.convertToRecipeDto(delete);
     }
 }

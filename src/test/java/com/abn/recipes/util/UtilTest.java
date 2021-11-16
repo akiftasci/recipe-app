@@ -9,12 +9,10 @@ import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 import org.assertj.core.api.Assertions;
-import org.json.JSONObject;
 import org.junit.Before;
 import org.junit.Test;
 
 import static io.restassured.RestAssured.given;
-import static org.hamcrest.Matchers.containsString;
 
 //todo:converter util class
 public class UtilTest {
@@ -48,7 +46,7 @@ public class UtilTest {
     public void testConvertRecipeDto() {
         Recipe recipe = createTestRecipeFajita();
 
-        final RecipeDto recipeDto = Util.convertRecipeDto(recipe);
+        final RecipeDto recipeDto = Util.convertToRecipeDto(recipe);
 
         Assertions.assertThat(recipeDto.getId()).isEqualTo(1);
         Assertions.assertThat(recipeDto.getDate()).isEqualTo(desiredFormat);
