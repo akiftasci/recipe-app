@@ -13,7 +13,6 @@ import org.junit.Before;
 import org.junit.Test;
 
 
-//todo:converter util class
 public class UtilTest {
     private RecipeService recipeService;
     private final String desiredFormat = "12-11-2021 19:02";
