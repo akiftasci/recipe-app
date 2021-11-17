@@ -15,7 +15,7 @@ import org.junit.Test;
 
 public class UtilTest {
     private RecipeService recipeService;
-    private final String desiredFormat = "12-11-2021 19:02";
+    private final String desiredFormat = "12 - 11 - 2021 19:02";
 
     @Before
     public void setUp() throws Exception {
